@@ -1,82 +1,229 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#09101d" />
-  <meta name="description" content="Veer Creation — independent Android tools and open-source projects. Explore verified GitHub releases and follow development." />
-  <meta property="og:title" content="Veer Creation — Independent Software Studio" />
-  <meta property="og:description" content="Explore Android projects and verified releases from Veer Creation." />
-  <meta property="og:type" content="website" />
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
-  <link rel="stylesheet" href="./assets/style.css" />
-  <title>Veer Creation | Independent Software Studio</title>
-  <script defer src="./assets/apps-data.js"></script>
-  <script defer src="./assets/site.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#020208">
+<meta name="description" content="VEER CREATION — independent Android, AI and software projects. Explore the studio, projects and public GitHub releases.">
+<meta property="og:title" content="VEER CREATION — Software & AI Studio">
+<meta property="og:description" content="Android apps, AI experiments and independent software projects from VEER CREATION.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<title>VEER CREATION — Software Developer & AI Engineer</title>
+<style>
+:root{--c1:#00f0ff;--c2:#ff00e5;--c3:#ffd400;--bg:#020208;--t:#e8f6ff;--m:#a2b3d3;--card:#091023}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{background:var(--bg);color:var(--t);font-family:"Segoe UI",system-ui,Roboto,sans-serif;overflow-x:hidden}
+a{color:inherit}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid var(--c3);outline-offset:4px}
+canvas#scene{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.scan{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 4px);mix-blend-mode:overlay}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.86))}
+main{position:relative;z-index:2}
+#loader{position:fixed;inset:0;z-index:99;background:#000;display:grid;place-items:center;transition:opacity .7s,visibility .7s}
+#loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+.ld{font:700 14px monospace;color:var(--c1);letter-spacing:3px;text-align:center;padding:15px}
+.ld .bar{width:min(240px,75vw);height:3px;background:#112;margin:18px auto 0;overflow:hidden}
+.ld .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c1),var(--c2));box-shadow:0 0 12px var(--c1);animation:load 1.65s forwards}
+@keyframes load{to{width:100%}}
+nav{position:fixed;top:0;left:0;right:0;z-index:15;display:flex;justify-content:space-between;align-items:center;min-height:70px;padding:14px 5vw;backdrop-filter:blur(13px);background:linear-gradient(rgba(2,2,8,.91),rgba(2,2,8,.68));border-bottom:1px solid #00f0ff27}
+.logo{font-weight:900;letter-spacing:3px;font-size:18px;text-decoration:none;white-space:nowrap}
+.logo b{color:var(--c1);text-shadow:0 0 12px var(--c1)}
+nav .links{display:flex;align-items:center}
+nav .links a{color:var(--m);text-decoration:none;margin-left:25px;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:.3s}
+nav .links a:hover{color:var(--c1);text-shadow:0 0 10px var(--c1)}
+.menu-toggle{display:none;min-width:43px;min-height:43px;background:#001c28;color:var(--c1);border:1px solid #00f0ff66;border-radius:9px;font-size:23px;align-items:center;justify-content:center}
+.drawer{position:fixed;z-index:22;top:0;bottom:0;left:0;width:min(310px,86vw);padding:22px 23px;background:#080b1c;border-right:1px solid #00f0ff77;box-shadow:20px 0 90px #000c;transform:translateX(-110%);transition:transform .27s ease;visibility:hidden}
+.drawer.open{transform:translateX(0);visibility:visible}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;color:var(--c1);font:800 14px monospace;letter-spacing:2px;margin-bottom:25px}
+.drawer button{background:none;color:var(--c1);padding:6px 11px;border:1px solid #00f0ff77;border-radius:6px;font-size:20px}
+.drawer a{display:block;padding:17px 6px;text-decoration:none;border-bottom:1px solid #00f0ff2e;font:700 14px monospace;letter-spacing:1px}
+.drawer-backdrop{position:fixed;inset:0;z-index:21;background:#000b}
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:112px 20px 65px;perspective:1000px}
+.pre{font:600 13px monospace;letter-spacing:5px;color:var(--c1);margin-bottom:25px;opacity:.9}
+.title3d{position:relative;font-size:clamp(52px,12.5vw,163px);font-weight:950;line-height:.92;letter-spacing:-3px;transform-style:preserve-3d;transition:transform .2s ease-out;max-width:100%}
+.title3d .l{display:block;color:#fff;text-shadow:1px 1px 0 #0bd,2px 2px 0 #0ac,3px 3px 0 #09b,4px 4px 0 #08a,5px 5px 0 #079,6px 6px 0 #068,7px 7px 0 #057,8px 8px 0 #046,10px 14px 30px rgba(0,240,255,.45),0 0 60px rgba(0,240,255,.25)}
+.title3d .l2{color:transparent;-webkit-text-stroke:2px var(--c2);text-shadow:0 0 30px rgba(255,0,229,.5);position:relative}
+.title3d .l2::after{content:"CREATION";position:absolute;inset:0;color:var(--c2);clip-path:inset(100% 0 0 0);animation:glitch 3.7s infinite steps(1);opacity:.85;-webkit-text-stroke:0}
+@keyframes glitch{0%,87%,100%{clip-path:inset(100% 0 0 0);transform:none}90%{clip-path:inset(10% 0 60% 0);transform:translate(-6px,2px)}93%{clip-path:inset(55% 0 20% 0);transform:translate(6px,-2px)}96%{clip-path:inset(30% 0 40% 0);transform:translate(-3px,0)}}
+.role{margin-top:34px;font:600 clamp(15px,2.1vw,22px) monospace;color:var(--t);min-height:32px}
+.role #tp{color:var(--c3);text-shadow:0 0 12px rgba(255,212,0,.6)}
+.cur{display:inline-block;width:9px;height:1.1em;background:var(--c3);vertical-align:middle;margin-left:4px;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+.cta{margin-top:40px;display:flex;gap:17px;flex-wrap:wrap;justify-content:center}
+.btn{position:relative;padding:15px 31px;font:700 13px monospace;letter-spacing:2px;text-transform:uppercase;color:#001219;background:var(--c1);text-decoration:none;clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);box-shadow:0 0 30px #00f0ff66;transition:transform .3s,filter .3s;display:inline-flex;align-items:center;justify-content:center;min-height:51px}
+.btn:hover{transform:translateY(-4px) scale(1.03);filter:drop-shadow(0 0 11px #00f0ffbb)}
+.btn.o{background:#180a23b8;color:#ff71f0;border:1px solid #ff00e5;box-shadow:inset 0 0 19px #ff00e53b}
+.scroll{margin-top:60px;font:11px monospace;letter-spacing:4px;color:var(--m);animation:bob 2s infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+section{padding:102px 6vw;max-width:1240px;margin:auto}
+.sh{display:flex;align-items:baseline;gap:16px;margin-bottom:45px}
+.sh .n{font:700 14px monospace;color:var(--c2)}
+.sh h2{font-size:clamp(30px,5vw,54px);font-weight:900;letter-spacing:-1.2px;line-height:1.12}
+.sh h2 span{color:var(--c1);text-shadow:0 0 20px #00f0ff77}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.stage{height:340px;perspective:1100px;display:grid;place-items:center;isolation:isolate}
+.cube{width:200px;height:200px;position:relative;transform-style:preserve-3d;animation:spin 16s linear infinite}
+.stage:hover .cube{animation-play-state:paused}
+@keyframes spin{from{transform:rotateX(-22deg) rotateY(0)}to{transform:rotateX(-22deg) rotateY(360deg)}}
+.f{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font:800 17px monospace;letter-spacing:2px;color:#fff;background:linear-gradient(135deg,#00f0ff24,#ff00e51e);border:1px solid #00f0ffb3;box-shadow:inset 0 0 40px #00f0ff37,0 0 25px #00f0ff25;backdrop-filter:blur(2px)}
+.f i{font-style:normal;font-size:40px}
+.f1{transform:translateZ(100px)}.f2{transform:rotateY(90deg) translateZ(100px)}.f3{transform:rotateY(180deg) translateZ(100px)}.f4{transform:rotateY(-90deg) translateZ(100px)}.f5{transform:rotateX(90deg) translateZ(100px)}.f6{transform:rotateX(-90deg) translateZ(100px)}
+.about p{color:var(--m);line-height:1.85;font-size:16px;margin-bottom:17px}.about p b{color:var(--t)}
+.term{background:#000d1bdb;border:1px solid #00f0ff55;border-radius:10px;font:13px/1.8 monospace;padding:18px;margin-top:10px;overflow-x:auto;box-shadow:0 0 35px #00f0ff13}
+.term .k{color:var(--c2)}.term .s{color:var(--c3)}.term .g{color:#46ff9a}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:27px;perspective:1200px}
+.holo{position:relative;padding:29px 27px;min-height:285px;background:linear-gradient(160deg,#0b1424ea,#090919eb);border:1px solid #00f0ff44;transform-style:preserve-3d;transition:transform .15s ease-out,border-color .3s;clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,26px 100%,0 calc(100% - 26px));isolation:isolate}
+.holo::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 30%,#00f0ff1f 45%,#ff00e525 55%,transparent 70%);background-size:250% 250%;background-position:var(--px,0%) 50%;mix-blend-mode:screen}
+.holo:hover{border-color:var(--c1)}
+.holo>*{position:relative;z-index:1;transform:translateZ(24px)}
+.holo .no{font:700 12px monospace;color:var(--c2);letter-spacing:3px}
+.holo .ic{font-size:42px;margin:14px 0 10px;filter:drop-shadow(0 0 12px #00f0ff88)}
+.holo h3{font-size:21px;margin-bottom:9px;line-height:1.3}
+.holo p{color:var(--m);line-height:1.7;font-size:14px}
+.holo .tags{margin-top:17px;display:flex;gap:8px;flex-wrap:wrap}
+.holo .tags span{font:11px monospace;padding:5px 9px;border:1px solid #ffd40066;color:var(--c3)}
+.section-note{color:var(--m);font:13px/1.7 monospace;margin:-17px 0 30px}
+.orbitWrap{height:510px;position:relative;perspective:900px;display:grid;place-items:center;max-width:700px;margin:auto;overflow:visible}
+.core{position:absolute;width:150px;height:150px;border-radius:50%;display:grid;place-items:center;text-align:center;font:900 15px monospace;letter-spacing:2px;background:radial-gradient(circle at 35% 30%,#fff,var(--c1) 25%,#036 70%);box-shadow:0 0 80px #00f0ff80,0 0 160px #00f0ff3b;color:#001;animation:pulse 3s infinite}
+@keyframes pulse{50%{box-shadow:0 0 120px #00f0ff9e,0 0 220px #00f0ff4a}}
+.ring{position:absolute;border:1px dashed #00f0ff60;border-radius:50%;transform:rotateX(72deg);max-width:95vw;max-height:95vw;pointer-events:none}
+.skillchip{position:absolute;left:50%;top:50%;padding:8px 12px;font:700 12px monospace;white-space:nowrap;color:#fff;background:#050a1ff0;border:1px solid var(--c1);box-shadow:0 0 15px #00f0ff66;border-radius:30px;will-change:transform}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:#00f0ff3d;border:1px solid #00f0ff47}
+.st{background:#040817;padding:34px 15px;text-align:center;min-width:0}.st .v{font-size:clamp(19px,3.7vw,39px);font-weight:900;background:linear-gradient(180deg,#fff,var(--c1));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 10px #00f0ff66)}
+.st .k{font:11px monospace;letter-spacing:2px;color:var(--m);margin-top:8px;text-transform:uppercase}
+.release-empty{border:1px dashed #00f0ff70;padding:34px;background:#080f24d9;text-align:center;border-radius:12px}
+.release-empty h3{font-size:20px;margin:6px 0 11px}.release-empty p{color:var(--m);font:14px/1.8 monospace;max-width:670px;margin:auto}
+.release-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}.release-card{background:#090d20df;border:1px solid #00f0ff47;padding:25px;border-radius:12px}.release-card h3{margin:10px 0}.release-card p{color:var(--m);font-size:14px;line-height:1.7;margin-bottom:15px}.release-card a{display:inline-block;margin-right:15px;color:var(--c1);font:700 13px monospace;text-decoration:none;padding:8px 0}
+.contact{text-align:center}.contact .big{font-size:clamp(36px,8vw,96px);font-weight:900;line-height:1.06;margin-bottom:30px;letter-spacing:-2px}
+.contact .big span{color:transparent;-webkit-text-stroke:2px var(--c1)}
+.contact .contact-note{font:13px/1.8 monospace;color:var(--m);margin-top:25px}
+footer{position:relative;z-index:2;text-align:center;padding:40px 16px;font:12px monospace;letter-spacing:2px;color:var(--m);border-top:1px solid #00f0ff35}
+.rv{opacity:0;transform:translateY(50px) rotateX(9deg);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.on{opacity:1;transform:none}
+@media(max-width:850px){.about{grid-template-columns:1fr;gap:8px}.stage{height:300px}}
+@media(max-width:700px){nav{padding:12px 17px;min-height:65px}.logo{font-size:15px;letter-spacing:2px}nav .links{display:none}.menu-toggle{display:flex}.hero{padding:120px 15px 50px;min-height:92svh}.pre{letter-spacing:2.6px;font-size:10px;max-width:90vw}.title3d{font-size:clamp(36px,10.6vw,66px);letter-spacing:-2px;line-height:1.05}.title3d .l{text-shadow:1px 1px 0 #0bd,2px 2px 0 #0ac,3px 3px 0 #09b,4px 4px 0 #08a,5px 5px 0 #079,0 0 30px #00f0ff77}.title3d .l2{-webkit-text-stroke:1px var(--c2)}.role{margin-top:28px;font-size:clamp(13px,3.7vw,18px)}.cta{margin-top:33px;gap:13px}.btn{font-size:12px;letter-spacing:1px;padding:13px 19px;min-height:49px}.scroll{margin-top:44px}section{padding:67px 18px}.sh{margin-bottom:27px;gap:12px}.sh h2{font-size:clamp(27px,7vw,38px)}.about p{font-size:15px}.term{font-size:12px;padding:13px}.stage{height:265px}.cube{width:156px;height:156px}.f{font-size:13px;letter-spacing:1px}.f i{font-size:33px}.f1{transform:translateZ(78px)}.f2{transform:rotateY(90deg) translateZ(78px)}.f3{transform:rotateY(180deg) translateZ(78px)}.f4{transform:rotateY(-90deg) translateZ(78px)}.f5{transform:rotateX(90deg) translateZ(78px)}.f6{transform:rotateX(-90deg) translateZ(78px)}.grid{grid-template-columns:1fr;gap:16px}.holo{min-height:245px;padding:25px 23px}.orbitWrap{height:355px;max-width:100%}.core{width:108px;height:108px;font-size:12px}.ring{width:220px!important;height:220px!important}.ring:nth-child(2){width:min(280px,74vw)!important;height:min(280px,74vw)!important}.skillchip{font-size:10px;padding:7px 9px}.stats{grid-template-columns:1fr;gap:1px}.st{padding:22px 12px}.st .v{font-size:27px}.contact .big{font-size:clamp(37px,8vw,60px)}.contact .cta{display:flex;flex-direction:column;align-items:center}.contact .btn{min-width:min(280px,90vw)}}
+@media(max-width:370px){.title3d{font-size:10.3vw}.hero{padding-left:10px;padding-right:10px}.role{font-size:12px}.pre{font-size:9px}.logo{font-size:13px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#loader{transition:none}.ld .bar i{animation:none;width:100%}.rv{opacity:1;transform:none;transition:none}.cube,.cur,.scroll,.core,.title3d .l2::after{animation:none}.title3d{transition:none}}
+[hidden]{display:none!important}
+</style>
 </head>
 <body>
-  <div class="backdrop-grid" aria-hidden="true"></div>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a href="#home" class="brand" aria-label="Veer Creation home">
-        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 44 44"><path d="M8 10h8l6 18 6-18h8L25 36h-6z" fill="currentColor"/><path d="M12 8h20" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".5"/></svg></span>
-        <span class="brand-name">VEER <b>CREATION</b><small>INDEPENDENT SOFTWARE STUDIO</small></span>
-      </a>
-      <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="#home" data-i18n="home">Home</a><a href="#apps" data-i18n="apps">Apps</a><a href="#process" data-i18n="process">How it works</a><a href="#support" data-i18n="support">Support</a>
-      </nav>
-      <div class="toolbar">
-        <button type="button" class="chip" id="langButton" aria-label="Switch language">हिंदी</button>
-        <button type="button" class="icon-button" id="themeButton" aria-label="Toggle theme" title="Toggle theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 8.5 8.5 0 1 0 20.5 14.5Z"/></svg></button>
-        <button type="button" class="icon-button menu-btn" id="menuButton" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg></button>
-      </div>
+<div id="loader"><div class="ld">INITIALIZING VEER.CREATION<div class="bar"><i></i></div></div></div>
+<canvas id="scene" aria-hidden="true"></canvas><div class="scan"></div><div class="vignette"></div>
+<nav>
+  <a class="logo" href="#top" aria-label="Veer Creation home"><b>V</b>EER<b>.</b>CREATION</a>
+  <div class="links"><a href="#about">About</a><a href="#work">Projects</a><a href="#downloads">Downloads</a><a href="#skills">Tech Orbit</a><a href="#contact">Contact</a></div>
+  <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">☰</button>
+</nav>
+<div id="drawerMask" class="drawer-backdrop" hidden></div>
+<aside id="drawer" class="drawer" aria-hidden="true" aria-label="Mobile menu">
+ <div class="drawer-head"><span>VEER CREATION</span><button id="menuClose" aria-label="Close menu">✕</button></div>
+ <a href="#top">⌂ Home</a><a href="#about">01 · About</a><a href="#work">02 · Projects</a><a href="#downloads">03 · Downloads</a><a href="#skills">04 · Tech Orbit</a><a href="#contact">05 · Contact</a><a href="https://github.com/magic616star666-bot" target="_blank" rel="noopener noreferrer">↗ GitHub Profile</a>
+</aside>
+<main id="top">
+<header class="hero">
+  <div class="pre">// SOFTWARE DEVELOPER × AI ENGINEER</div>
+  <h1 class="title3d" id="t3d"><span class="l">VEER</span><span class="l l2">CREATION</span></h1>
+  <div class="role">&gt; <span id="tp"></span><span class="cur"></span></div>
+  <div class="cta"><a class="btn" href="https://github.com/magic616star666-bot" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="btn o" href="#work">View Projects</a></div>
+  <div class="scroll">SCROLL ↓</div>
+</header>
+<section id="about">
+  <div class="sh rv"><span class="n">01</span><h2>Who <span>I Am</span></h2></div>
+  <div class="about">
+    <div class="stage rv"><div class="cube"><div class="f f1"><i>🤖</i>AI ENGINE</div><div class="f f2"><i>📱</i>ANDROID</div><div class="f f3"><i>🧠</i>LLM</div><div class="f f4"><i>⚡</i>AUTOMATION</div><div class="f f5"><i>💠</i>VEER</div><div class="f f6"><i>🚀</i>SHIP IT</div></div></div>
+    <div class="rv"><p>I'm <b>Veer</b>, a <b>Software Developer &amp; AI Engineer</b> who has been building since <b>2006</b>.</p><p>I build Android apps, AI engines, intelligent assistants and automation systems: <b>full products, not just demos.</b></p>
+      <div class="term"><span class="k">const</span> veer = {<br>&nbsp;&nbsp;role: <span class="s">"Dev + AI Engineer"</span>,<br>&nbsp;&nbsp;since: <span class="s">2006</span>,<br>&nbsp;&nbsp;builds: [<span class="s">"Apps"</span>, <span class="s">"AI"</span>, <span class="s">"Tools"</span>],<br>&nbsp;&nbsp;focus: <span class="g">"BUILDING ●"</span><br>}</div>
     </div>
-  </header>
-  <div class="drawer-overlay" id="drawerOverlay" hidden></div>
-  <aside class="drawer" id="mobileDrawer" aria-label="Mobile navigation" aria-hidden="true">
-    <div class="drawer-top"><strong>VEER CREATION</strong><button id="drawerClose" aria-label="Close menu" class="icon-button">✕</button></div>
-    <a href="#home" data-i18n="home">Home</a><a href="#apps" data-i18n="apps">Apps</a><a href="#process" data-i18n="process">How it works</a><a href="#support" data-i18n="support">Support</a><a id="drawerGithub" href="https://github.com/magic616star666-bot" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-  </aside>
-
-  <main id="home">
-    <section class="hero container">
-      <div class="hero-main">
-        <div class="eyebrow"><span class="pulse"></span><span data-i18n="independent">Independent software & experiments</span></div>
-        <h1><span data-i18n="hero1">Ideas beyond</span><br><span class="accent-text" data-i18n="hero2">the ordinary.</span></h1>
-        <p class="hero-copy" data-i18n="heroDesc">An independent studio exploring Android development, useful tools and ambitious ideas. Every download shown here links to an actual published release.</p>
-        <div class="hero-actions"><a class="button primary" href="#apps" data-i18n="explore">Explore apps</a><a class="button outline" href="https://github.com/magic616star666-bot" id="profileLink" rel="noopener noreferrer" target="_blank">GitHub profile ↗</a></div>
-        <div class="trust-row"><span>✓ <span data-i18n="noAccount">No account to browse</span></span><span>✓ <span data-i18n="verified">Release links verified</span></span><span>✓ <span data-i18n="openSource">Open-source where noted</span></span></div>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="art-orbit art-orbit-1"></div><div class="art-orbit art-orbit-2"></div><div class="art-center"><span>V</span></div>
-        <div class="float-card card-one"><i></i><span>BUILD</span><small>Creative development</small></div>
-        <div class="float-card card-two"><i></i><span>SHIP</span><small>Verified releases</small></div>
-        <div class="float-card card-three"><i></i><span>GROW</span><small>Community feedback</small></div>
-      </div>
-    </section>
-
-    <section class="metrics container" aria-label="Platform overview">
-      <div class="metric"><strong id="publishedCount">0</strong><span data-i18n="published">Published apps</span></div>
-      <div class="metric"><strong id="releaseCount">0</strong><span data-i18n="releaseCount">Verified releases</span></div>
-      <div class="metric"><strong>GitHub</strong><span data-i18n="downloadSource">Release source</span></div>
-    </section>
-
-    <section id="apps" class="section container">
-      <div class="section-top"><div><div class="kicker" data-i18n="catalog">THE CATALOG</div><h2 data-i18n="built">Built with purpose.</h2><p data-i18n="catalogDesc">Only approved, published projects appear here. Download links are checked against GitHub Releases.</p></div><span class="section-icon" aria-hidden="true">↗</span></div>
-      <div class="catalog-toolbar"><div class="searchwrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg><input type="search" id="search" data-i18n-placeholder="search" placeholder="Search apps" aria-label="Search apps"></div><select id="category" aria-label="Filter category"><option value="all" data-i18n="all">All categories</option></select></div>
-      <div id="catalog" class="catalog" aria-live="polite"></div>
-      <div class="empty-state" id="emptyState" hidden><span class="empty-icon">⌘</span><h3 data-i18n="preparing">Launchpad is ready.</h3><p data-i18n="emptyDesc">No app has been approved for publication yet. Verified releases will appear here automatically after the catalog is updated.</p><a href="https://github.com/magic616star666-bot" target="_blank" rel="noopener noreferrer" data-i18n="follow">Follow development on GitHub ↗</a></div>
-    </section>
-
-    <section id="process" class="section container">
-      <div class="section-top"><div><div class="kicker" data-i18n="trusted">TRANSPARENT BY DESIGN</div><h2 data-i18n="processTitle">How releases work</h2><p data-i18n="processDesc">A simple, verifiable route from source to the APK you install.</p></div></div>
-      <div class="steps"><article class="step"><span>01</span><h3 data-i18n="stage1">Review</h3><p data-i18n="stage1Desc">Project details and permissions are reviewed before it is listed.</p></article><article class="step"><span>02</span><h3 data-i18n="stage2">Publish</h3><p data-i18n="stage2Desc">The approved build is uploaded to its own GitHub Release.</p></article><article class="step"><span>03</span><h3 data-i18n="stage3">Verify</h3><p data-i18n="stage3Desc">This catalog checks for a published release, never inventing a download.</p></article></div>
-    </section>
-
-    <section class="section container" id="support">
-      <div class="support-panel"><div><div class="kicker" data-i18n="community">BUILD WITH THE COMMUNITY</div><h2 data-i18n="keepBuilding">Help good ideas grow.</h2><p data-i18n="supportDesc">Follow updates, report issues, or support independent development when a funding option becomes available.</p><div id="fundingState" class="funding-note" data-i18n="fundingPending">Sponsorship is not yet enabled. No payments are being collected here.</div></div><div class="support-actions"><a class="button primary" id="githubFooterLink" href="https://github.com/magic616star666-bot" target="_blank" rel="noopener noreferrer" data-i18n="visitGithub">Visit GitHub ↗</a><a class="button outline" id="sponsorLink" href="#support" hidden target="_blank" rel="noopener noreferrer" data-i18n="beSponsor">Become a sponsor ↗</a></div></div>
-    </section>
-  </main>
-  <footer><div class="container footer-in"><div class="footer-brand">VEER <strong>CREATION</strong><small data-i18n="footerTag">Independent ideas. Real projects.</small></div><div class="footer-links"><a href="#apps" data-i18n="apps">Apps</a><a href="#support" data-i18n="support">Support</a><a href="https://github.com/magic616star666-bot" target="_blank" rel="noopener noreferrer">GitHub</a></div><p>© <span id="year">2026</span> Veer Creation.</p></div></footer>
+  </div>
+</section>
+<section id="work">
+  <div class="sh rv"><span class="n">02</span><h2>Featured <span>Projects</span></h2></div>
+  <p class="section-note">Studio portfolio · Featured projects include works in progress. Public downloads are listed separately below.</p>
+  <div class="grid">
+    <article class="holo rv"><div class="no">PRJ_001</div><div class="ic">🧠</div><h3>Jarvis AI</h3><p>A personal AI assistant concept with its own dashboard, memory and smart automation.</p><div class="tags"><span>AI</span><span>LLM</span><span>Dashboard</span></div></article>
+    <article class="holo rv"><div class="no">PRJ_002</div><div class="ic">💻</div><h3>Python Eye IDE Studio</h3><p>An Android IDE project for Python and notebooks, with planned ONNX support and on-device APK builds.</p><div class="tags"><span>Android</span><span>Python</span><span>ONNX</span></div></article>
+    <article class="holo rv"><div class="no">PRJ_003</div><div class="ic">✨</div><h3>Arina AI</h3><p>An AI-powered Android assistant project with a smart, mobile-first interface.</p><div class="tags"><span>Android</span><span>AI</span></div></article>
+    <article class="holo rv"><div class="no">PRJ_004</div><div class="ic">🔌</div><h3>Arina MCP</h3><p>An Android-focused project exploring tool access for AI agents using the MCP protocol.</p><div class="tags"><span>MCP</span><span>Agents</span></div></article>
+    <article class="holo rv"><div class="no">PRJ_005</div><div class="ic">⚙️</div><h3>Own AI Engine</h3><p>An independent AI engine and server project exploring inference and API integrations.</p><div class="tags"><span>Server</span><span>AI</span></div></article>
+    <article class="holo rv"><div class="no">PRJ_006</div><div class="ic">🏏</div><h3>Cricket Predictor</h3><p>A match prediction project exploring analysis before play; predictions are not guaranteed.</p><div class="tags"><span>ML</span><span>Prediction</span></div></article>
+  </div>
+</section>
+<section id="downloads">
+  <div class="sh rv"><span class="n">03</span><h2>Public <span>Releases</span></h2></div>
+  <div id="releases" class="release-grid" aria-live="polite"></div>
+  <div id="noReleases" class="release-empty rv"><h3>⬡ RELEASE BAY · STANDING BY</h3><p>Public APK downloads appear here only after they are approved and published on GitHub Releases. No placeholder downloads.</p></div>
+</section>
+<section id="skills">
+  <div class="sh rv"><span class="n">04</span><h2>Tech <span>Orbit</span></h2></div>
+  <div class="orbitWrap rv" id="orbit" aria-label="Technology areas: Python, Kotlin, Java, Android, LLMs, ONNX, Node.js, MCP, RAG, Git, AI and automation">
+    <div class="ring" style="width:300px;height:300px"></div><div class="ring" style="width:480px;height:480px"></div><div class="core">VEER<br>CORE</div>
+  </div>
+</section>
+<section>
+  <div class="stats rv"><div class="st"><div class="v">ANDROID</div><div class="k">Mobile First</div></div><div class="st"><div class="v">AI · LLM</div><div class="k">Research &amp; Tools</div></div><div class="st"><div class="v">GITHUB</div><div class="k">Public Releases</div></div></div>
+</section>
+<section id="contact" class="contact">
+  <div class="big rv">LET'S BUILD<br><span>SOMETHING</span></div>
+  <div class="cta rv"><a class="btn" href="https://github.com/magic616star666-bot" target="_blank" rel="noopener noreferrer">GitHub</a><a class="btn o" href="https://github.com/magic616star666-bot/Veer-creation-/issues" target="_blank" rel="noopener noreferrer">Feedback ↗</a></div>
+  <p class="contact-note">Independent software &amp; AI projects · No paid sponsorship link has been activated.</p>
+</section>
+</main>
+<footer>© <span id="year">2026</span> VEER CREATION · ENGINEERED WITH ⚡</footer>
+<script defer src="assets/apps-data.js"></script>
+<script>
+'use strict';
+const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=id=>document.getElementById(id);
+$('year').textContent=new Date().getFullYear();
+const dismiss=()=>{$('loader').classList.add('hide')};
+addEventListener('load',()=>setTimeout(dismiss,reducedMotion?50:1400),{once:true});
+setTimeout(dismiss,3000);
+// Drawer: hamburger, overlay, ESC and swipe. Works in portrait and landscape.
+const menu=$('drawer'),mask=$('drawerMask');
+function drawer(open){menu.classList.toggle('open',open);menu.setAttribute('aria-hidden',String(!open));mask.hidden=!open;$('menuToggle').setAttribute('aria-expanded',String(open));document.body.style.overflow=open?'hidden':'';if(open)$('menuClose').focus();}
+$('menuToggle').addEventListener('click',()=>drawer(true));$('menuClose').addEventListener('click',()=>drawer(false));mask.addEventListener('click',()=>drawer(false));
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>drawer(false)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')drawer(false)});
+let sx=0,sy=0;
+document.addEventListener('touchstart',e=>{if(e.touches.length===1){sx=e.touches[0].clientX;sy=e.touches[0].clientY;}},{passive:true});
+document.addEventListener('touchend',e=>{if(e.changedTouches.length!==1)return;let dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>85&&Math.abs(dy)<Math.abs(dx)*.6){if(dx>0)drawer(true);else drawer(false)}},{passive:true});
+// Animated stars, grid and neural sphere based on the supplied visual design.
+(()=>{if(reducedMotion)return;const c=$('scene'),x=c.getContext('2d',{alpha:false});if(!x)return;
+let W,H,F,t=0,mx=0,my=0,scrollY0=0;const mobile=innerWidth<700,DPR=Math.min(devicePixelRatio||1,mobile?1.4:1.75);
+function rs(){W=innerWidth;H=innerHeight;c.width=Math.round(W*DPR);c.height=Math.round(H*DPR);x.setTransform(DPR,0,0,DPR,0,0);F=Math.min(W,H)*.9;}rs();addEventListener('resize',rs);
+addEventListener('mousemove',e=>{mx=e.clientX/W-.5;my=e.clientY/H-.5},{passive:true});addEventListener('scroll',()=>scrollY0=scrollY,{passive:true});
+const N=mobile?110:230,sp=[];for(let i=0;i<N;i++){const y=1-i/(N-1)*2,r=Math.sqrt(1-y*y),a=i*2.399963;sp.push([Math.cos(a)*r,y,Math.sin(a)*r]);}
+const links=[];for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){const d=Math.hypot(sp[i][0]-sp[j][0],sp[i][1]-sp[j][1],sp[i][2]-sp[j][2]);if(d<.30)links.push([i,j])}
+const stars=Array.from({length:mobile?90:220},()=>[Math.random()*2-1,Math.random()*2-1,Math.random()]);
+function proj(px,py,pz){const s=F/pz;return[W/2+px*s,H/2+py*s,s]}
+function frame(){if(document.hidden){requestAnimationFrame(frame);return;}t+=.006;x.fillStyle='rgba(2,2,8,.44)';x.fillRect(0,0,W,H);
+for(const s of stars){s[2]-=.0025;if(s[2]<=.02){s[0]=Math.random()*2-1;s[1]=Math.random()*2-1;s[2]=1}const px=W/2+s[0]/s[2]*W*.3,py=H/2+s[1]/s[2]*H*.3,r=(1-s[2])*1.8;x.fillStyle='rgba(180,220,255,'+(1-s[2])+')';x.fillRect(px,py,r,r)}
+const camY=1.2,off=t*2%1,hY=H/2+H*.12;x.lineWidth=1;
+for(let i=0;i<22;i++){const z=1+i-off,yS=H/2+camY*F/z*.5+H*.12,a=Math.max(0,1-z/24);x.strokeStyle='rgba(255,0,229,'+(a*.42)+')';x.beginPath();x.moveTo(0,yS);x.lineTo(W,yS);x.stroke()}
+for(let i=-18;i<=18;i++){const xb=W/2+i*W*.09;x.strokeStyle='rgba(0,240,255,.16)';x.beginPath();x.moveTo(W/2+i*8,hY);x.lineTo(xb+(xb-W/2)*2,H);x.stroke()}
+const glow=x.createLinearGradient(0,hY-60,0,hY+20);glow.addColorStop(0,'rgba(255,0,229,0)');glow.addColorStop(1,'rgba(255,0,229,.23)');x.fillStyle=glow;x.fillRect(0,hY-60,W,80);
+const ry=t*1.2+mx*1.5,rx=.35+my*.8,cy=Math.cos(ry),sy=Math.sin(ry),cx=Math.cos(rx),sx=Math.sin(rx),R=.55,ox=W>900?.55:0,oy=-.25-scrollY0/H*.6,zO=2.6;
+const P=sp.map(p=>{let X=p[0]*cy-p[2]*sy,Z=p[0]*sy+p[2]*cy,Y=p[1]*cx-Z*sx;Z=p[1]*sx+Z*cx;const pulse=1+Math.sin(t*4+p[1]*6)*.03;return proj(X*R*pulse+ox,Y*R*pulse+oy,Z*R+zO).concat(Z)});
+for(const [i,j] of links){const a=P[i],b=P[j],d=(a[3]+b[3])/2,al=Math.min(.4,.08+(1-d)*.25);x.strokeStyle='rgba(0,240,255,'+al+')';x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.stroke()}
+for(const p of P){const fr=(1-p[3])/2;x.fillStyle=fr>.6?'#fff':'rgba(0,240,255,'+(.3+fr*.7)+')';x.beginPath();x.arc(p[0],p[1],1+fr*2.4,0,Math.PI*2);x.fill()}
+if(links.length){const k=Math.floor(t*30)%links.length,L=links[k],a=P[L[0]];x.shadowBlur=20;x.shadowColor='#ffd400';x.fillStyle='#ffd400';x.beginPath();x.arc(a[0],a[1],4,0,Math.PI*2);x.fill();x.shadowBlur=0}
+requestAnimationFrame(frame)}frame();})();
+// 3D title desktop mouse tilt; touch keeps stable readable text.
+const t3=$('t3d');if(!reducedMotion&&matchMedia('(pointer:fine)').matches){addEventListener('mousemove',e=>{const X=e.clientX/innerWidth-.5,Y=e.clientY/innerHeight-.5;t3.style.transform='rotateY('+(X*20)+'deg) rotateX('+(-Y*15)+'deg)'},{passive:true});}
+// Typing animation.
+(()=>{const words=['Software Developer','AI Engineer','Android App Builder','LLM & Automation Studio','Independent Software Creator'];const el=$('tp');if(reducedMotion){el.textContent=words[0];return;}let i=0,j=0,dir=0;(function tick(){const s=words[i];el.textContent=s.slice(0,j);if(!dir&&j<s.length){j++;setTimeout(tick,82)}else if(!dir){dir=1;setTimeout(tick,1550)}else if(j){j--;setTimeout(tick,32)}else{dir=0;i=(i+1)%words.length;setTimeout(tick,220)}})()})();
+// Holographic card tilt for mouse devices only.
+if(!reducedMotion&&matchMedia('(pointer:fine)').matches){document.querySelectorAll('.holo').forEach(h=>{h.addEventListener('mousemove',e=>{const r=h.getBoundingClientRect(),X=(e.clientX-r.left)/r.width,Y=(e.clientY-r.top)/r.height;h.style.transform='rotateY('+((X-.5)*15)+'deg) rotateX('+((.5-Y)*15)+'deg) scale(1.025)';h.style.setProperty('--px',X*100+'%')});h.addEventListener('mouseleave',()=>h.style.transform='')})}
+// Skill orbit adapts its radius to screen size.
+(()=>{const wrap=$('orbit');const skills=[['Python',0],['Kotlin',0],['Java',0],['Android',0],['LLMs',1],['ONNX',1],['Node.js',1],['MCP',1],['RAG',1],['Git',0]];const items=skills.map(([name,ring],i)=>{const chip=document.createElement('div');chip.className='skillchip';chip.textContent=name;wrap.appendChild(chip);return{chip,ring,angle:i/skills.length*Math.PI*2*1.7+i}});let frame=0;
+function place(){const mobile=innerWidth<700;const smallRadius=Math.min(mobile?90:150,innerWidth*.23),bigRadius=Math.min(mobile?133:238,innerWidth*.31);frame+=reducedMotion?0:.006;for(const it of items){const radius=it.ring?bigRadius:smallRadius,a=it.angle+frame*(it.ring?.7:1.2),X=Math.cos(a)*radius,Z=Math.sin(a)*radius,Y=Z*.32,scale=.76+(Z/radius+1)*.13;it.chip.style.transform='translate(-50%, -50%) translate('+X+'px, '+Y+'px) scale('+scale+')';it.chip.style.zIndex=Z>0?'3':'1';it.chip.style.opacity=String(.62+(Z/radius+1)*.17);}if(!reducedMotion)requestAnimationFrame(place)}place();})();
+// Scroll reveal, with no invisible content when observer is unavailable.
+if('IntersectionObserver' in window&&!reducedMotion){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.rv').forEach(el=>io.observe(el))}else document.querySelectorAll('.rv').forEach(el=>el.classList.add('on'));
+// Only approved public GitHub APK releases; never invent downloads.
+(()=>{const list=$('releases'),empty=$('noReleases'),apps=(Array.isArray(window.VEER_APPS)?window.VEER_APPS:[]).filter(a=>a&&a.approved===true&&/^[\w.-]+\/[\w.-]+$/.test(a.repo||''));if(!apps.length)return;
+Promise.all(apps.map(async a=>{try{const r=await fetch('https://api.github.com/repos/'+a.repo+'/releases/latest',{headers:{Accept:'application/vnd.github+json'}});if(!r.ok)return null;const release=await r.json();const apk=(release.assets||[]).find(x=>/\.apk$/i.test(x.name||'')&&x.browser_download_url);return apk?{a,release,apk}:null}catch{return null}})).then(items=>{const good=items.filter(Boolean);if(!good.length)return;empty.hidden=true;for(const {a,release,apk} of good){const div=document.createElement('article');div.className='release-card';const title=document.createElement('h3');title.textContent=a.name||a.repo;const desc=document.createElement('p');desc.textContent=a.description||'Published Android release';const dl=document.createElement('a');dl.textContent='Download APK ↗';dl.href=apk.browser_download_url;dl.target='_blank';dl.rel='noopener noreferrer';const rel=document.createElement('a');rel.textContent='View Release ↗';rel.href=release.html_url;rel.target='_blank';rel.rel='noopener noreferrer';div.append(title,desc,dl,rel);list.append(div);}})})();
+</script>
 </body>
 </html>
