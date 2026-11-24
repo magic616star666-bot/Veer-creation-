@@ -1,0 +1,31 @@
+name: Bug report
+about: Report a reproducible bug without sharing private data
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: 'Please do not include API keys, passwords, personal data, or private files.'
+  - type: input
+    id: version
+    attributes:
+      label: App / version
+      placeholder: App name and exact release version
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: Describe what you tapped and what happened
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Android version / device / other details (optional)
