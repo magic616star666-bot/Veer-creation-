@@ -92,6 +92,7 @@ section{padding:102px 6vw;max-width:1240px;margin:auto}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:#00f0ff3d;border:1px solid #00f0ff47}
 .st{background:#040817;padding:34px 15px;text-align:center;min-width:0}.st .v{font-size:clamp(19px,3.7vw,39px);font-weight:900;background:linear-gradient(180deg,#fff,var(--c1));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 10px #00f0ff66)}
 .st .k{font:11px monospace;letter-spacing:2px;color:var(--m);margin-top:8px;text-transform:uppercase}
+.app-preview{display:flex;align-items:center;gap:27px;margin:0 0 30px;padding:22px;border:1px solid #00f0ff55;border-radius:16px;background:linear-gradient(135deg,#081629dc,#101026d9);flex-wrap:wrap}.app-preview img{width:120px;height:auto;border:2px solid #00f0ff66;border-radius:13px;box-shadow:0 0 24px #00f0ff2b;display:block}.app-preview .pv-copy{flex:1;min-width:210px}.app-preview h3{font-size:clamp(20px,4vw,28px);margin-bottom:10px}.app-preview p{font:14px/1.7 monospace;color:var(--m);margin-bottom:12px}.app-preview small{color:#ffd400;font:12px/1.5 monospace}.app-preview a{color:var(--c1);text-decoration:underline}@media(max-width:700px){.app-preview{justify-content:center;text-align:center;gap:18px}.app-preview .pv-copy{min-width:0;flex-basis:100%}}
 .release-empty{border:1px dashed #00f0ff70;padding:34px;background:#080f24d9;text-align:center;border-radius:12px}
 .release-empty h3{font-size:20px;margin:6px 0 11px}.release-empty p{color:var(--m);font:14px/1.8 monospace;max-width:670px;margin:auto}
 .release-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}.release-card{background:#090d20df;border:1px solid #00f0ff47;padding:25px;border-radius:12px}.release-card h3{margin:10px 0}.release-card p{color:var(--m);font-size:14px;line-height:1.7;margin-bottom:15px}.release-card a{display:inline-block;margin-right:15px;color:var(--c1);font:700 13px monospace;text-decoration:none;padding:8px 0}
@@ -152,6 +153,10 @@ footer{position:relative;z-index:2;text-align:center;padding:40px 16px;font:12px
 </section>
 <section id="downloads">
   <div class="sh rv"><span class="n">03</span><h2>Public <span>Releases</span></h2></div>
+  <div class="app-preview rv" aria-label="Genuine ARINA Android app screenshot preview">
+    <a href="assets/arina-dashboard-earlier.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open genuine ARINA dashboard screenshot"><img src="assets/arina-dashboard-earlier.jpg" width="120" height="267" loading="lazy" alt="Real earlier ARINA Server Android dashboard showing a central globe and server status panels"></a>
+    <div class="pv-copy"><h3>🐺 ARINA AI Server &amp; Engine · App Preview</h3><p>See the actual Android app interface before downloading. A real earlier dashboard screenshot from the ARINA Server app, showing the neural globe and server control panels.</p><small>REAL APP SCREENSHOT · EARLIER BUILD — current release may look different</small></div>
+  </div>
   <div id="releases" class="release-grid" aria-live="polite"></div>
   <div id="noReleases" class="release-empty rv"><h3>⬡ RELEASE BAY · STANDING BY</h3><p>Public APK downloads appear here only after they are approved and published on GitHub Releases. No placeholder downloads.</p></div>
 </section>
