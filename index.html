@@ -153,6 +153,9 @@ footer{position:relative;z-index:2;text-align:center;padding:40px 16px;font:12px
 <section id="downloads">
   <div class="sh rv"><span class="n">03</span><h2>Public <span>Releases</span></h2></div>
   <div id="releases" class="release-grid" aria-live="polite"></div>
+  <div id="arinaGalleryMount" hidden style="margin:28px 0"><a href="arina-gallery.html" target="_blank" rel="noopener" style="display:inline-block;color:var(--c1);margin-bottom:12px">Open full-size ARINA screenshots ↗</a><iframe id="arinaGalleryFrame" title="Seven original ARINA app screenshots" style="width:100%;border:0;border-radius:14px;display:block;height:600px" loading="lazy"></iframe></div>
+  <script>(function(){const mount=document.getElementById('arinaGalleryMount'),frame=document.getElementById('arinaGalleryFrame');fetch('arina-gallery.html',{method:'HEAD',cache:'no-store'}).then(r=>{if(!r.ok)return;frame.addEventListener('load',()=>{try{const doc=frame.contentDocument;const resize=()=>{frame.style.height=(doc.body.scrollHeight+8)+'px';};resize();new ResizeObserver(resize).observe(doc.body);}catch(e){frame.style.height='850px';}});frame.src='arina-gallery.html';mount.hidden=false;}).catch(()=>{});})();</script>
+
   <div id="noReleases" class="release-empty rv"><h3>⬡ RELEASE BAY · STANDING BY</h3><p>Public APK downloads appear here only after they are approved and published on GitHub Releases. No placeholder downloads.</p></div>
 </section>
 <section id="skills">
