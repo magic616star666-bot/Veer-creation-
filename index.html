@@ -93,6 +93,20 @@ section{padding:102px 6vw;max-width:1240px;margin:auto}
 .st{background:#040817;padding:34px 15px;text-align:center;min-width:0}.st .v{font-size:clamp(19px,3.7vw,39px);font-weight:900;background:linear-gradient(180deg,#fff,var(--c1));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 10px #00f0ff66)}
 .st .k{font:11px monospace;letter-spacing:2px;color:var(--m);margin-top:8px;text-transform:uppercase}
 .hero-appshot{display:block;margin:26px auto 0;text-align:center;text-decoration:none;max-width:320px}.hero-appshot img{width:clamp(190px,42vw,245px);height:auto;border:2px solid #00f0ff99;border-radius:17px;box-shadow:0 0 20px #00f0ff45,0 0 60px #00f0ff1e;display:block;margin:auto}.hero-appshot span{display:block;margin-top:12px;color:var(--c1);font:700 13px/1.6 monospace;letter-spacing:.5px}.hero-appshot small{display:block;color:var(--m);font:11px/1.4 monospace;margin-top:3px}.app-preview img{width:clamp(190px,40vw,245px)!important;height:auto!important}.app-preview{display:flex;align-items:center;gap:27px;margin:0 0 30px;padding:22px;border:1px solid #00f0ff55;border-radius:16px;background:linear-gradient(135deg,#081629dc,#101026d9);flex-wrap:wrap}.app-preview img{width:120px;height:auto;border:2px solid #00f0ff66;border-radius:13px;box-shadow:0 0 24px #00f0ff2b;display:block}.app-preview .pv-copy{flex:1;min-width:210px}.app-preview h3{font-size:clamp(20px,4vw,28px);margin-bottom:10px}.app-preview p{font:14px/1.7 monospace;color:var(--m);margin-bottom:12px}.app-preview small{color:#ffd400;font:12px/1.5 monospace}.app-preview a{color:var(--c1);text-decoration:underline}@media(max-width:700px){.app-preview{justify-content:center;text-align:center;gap:18px}.app-preview .pv-copy{min-width:0;flex-basis:100%}}
+
+.arina-gallery{margin:24px auto 36px;max-width:1150px}
+.arina-gallery-head{font:800 clamp(20px,4vw,28px) monospace;margin-bottom:11px;color:var(--t)}
+.arina-gallery-note{color:var(--m);font:13px/1.7 monospace;margin-bottom:19px}
+.arina-shots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.arina-shot{border:1px solid #00f0ff55;border-radius:13px;overflow:hidden;background:#091122;box-shadow:inset 0 0 12px #00f0ff15}
+.arina-shot-visual{height:285px;max-width:100%;background:#010712;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.arina-shot-visual img{display:block;width:160px;height:auto;max-width:none;transform-origin:center;filter:none;image-rendering:auto}
+.arina-shot-visual.part img{width:300px;transform:translateY(var(--shift,0px)) scale(var(--zoom,1));}
+.arina-shot h4{font:700 13px/1.5 monospace;color:#e8f6ff;padding:12px 11px 3px}
+.arina-shot p{font:11px/1.5 monospace;color:var(--m);padding:0 11px 14px}
+.arina-gallery-caption{font:11px/1.7 monospace;color:var(--c3);margin-top:14px}
+@media(max-width:700px){.arina-shots{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.arina-shot-visual{height:245px}.arina-shot-visual.part img{width:270px}.arina-shot h4{font-size:12px;padding:10px 9px 3px}.arina-shot p{padding:0 9px 11px}}
+@media(max-width:370px){.arina-shot-visual{height:200px}.arina-shot-visual.part img{width:225px}}
 .release-empty{border:1px dashed #00f0ff70;padding:34px;background:#080f24d9;text-align:center;border-radius:12px}
 .release-empty h3{font-size:20px;margin:6px 0 11px}.release-empty p{color:var(--m);font:14px/1.8 monospace;max-width:670px;margin:auto}
 .release-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}.release-card{background:#090d20df;border:1px solid #00f0ff47;padding:25px;border-radius:12px}.release-card h3{margin:10px 0}.release-card p{color:var(--m);font-size:14px;line-height:1.7;margin-bottom:15px}.release-card a{display:inline-block;margin-right:15px;color:var(--c1);font:700 13px monospace;text-decoration:none;padding:8px 0}
@@ -159,6 +173,19 @@ footer{position:relative;z-index:2;text-align:center;padding:40px 16px;font:12px
     <div class="pv-copy"><h3>🐺 ARINA AI Server &amp; Engine · App Preview</h3><p>See the actual Android app interface before downloading. A real earlier dashboard screenshot from the ARINA Server app, showing the neural globe and server control panels.</p><small>REAL APP SCREENSHOT · EARLIER BUILD — current release may look different</small></div>
   </div>
   <div id="releases" class="release-grid" aria-live="polite"></div>
+  <div class="arina-gallery" aria-label="Six genuine detail views of the earlier ARINA Android dashboard">
+    <h3 class="arina-gallery-head">🐺 ARINA · APP SCREEN DETAILS</h3>
+    <p class="arina-gallery-note">Six views of one genuine ARINA Android dashboard capture. These are close-up sections of the <strong>same earlier build screen</strong>, not six independent feature screenshots.</p>
+    <div class="arina-shots">
+      <article class="arina-shot"><div class="arina-shot-visual"><img src="assets/arina-dashboard-earlier.jpg" loading="lazy" alt="Full genuine earlier ARINA Server app dashboard screenshot"></div><h4>01 · Full Dashboard</h4><p>Original Android screen</p></article>
+      <article class="arina-shot"><div class="arina-shot-visual part" style="--shift:260px;--zoom:1.45"><img src="assets/arina-dashboard-earlier.jpg" loading="lazy" alt="Detail crop of ARINA app dashboard top header"></div><h4>02 · Server Header</h4><p>Detail of screen 01</p></article>
+      <article class="arina-shot"><div class="arina-shot-visual part" style="--shift:100px;--zoom:1.4"><img src="assets/arina-dashboard-earlier.jpg" loading="lazy" alt="Detail crop of central ARINA globe interface"></div><h4>03 · Neural Globe</h4><p>Detail of screen 01</p></article>
+      <article class="arina-shot"><div class="arina-shot-visual part" style="--shift:-70px;--zoom:1.45"><img src="assets/arina-dashboard-earlier.jpg" loading="lazy" alt="Detail crop of ARINA server controls"></div><h4>04 · Server Controls</h4><p>Detail of screen 01</p></article>
+      <article class="arina-shot"><div class="arina-shot-visual part" style="--shift:-220px;--zoom:1.4"><img src="assets/arina-dashboard-earlier.jpg" loading="lazy" alt="Detail crop of ARINA AI engine and voice panels"></div><h4>05 · Engine Panels</h4><p>Detail of screen 01</p></article>
+      <article class="arina-shot"><div class="arina-shot-visual part" style="--shift:-340px;--zoom:1.35"><img src="assets/arina-dashboard-earlier.jpg" loading="lazy" alt="Detail crop of ARINA dashboard footer controls"></div><h4>06 · System Panels</h4><p>Detail of screen 01</p></article>
+    </div>
+    <p class="arina-gallery-caption">Real earlier-build capture · View original screenshot above · Actual release interface can differ.</p>
+  </div>
   <div id="noReleases" class="release-empty rv"><h3>⬡ RELEASE BAY · STANDING BY</h3><p>Public APK downloads appear here only after they are approved and published on GitHub Releases. No placeholder downloads.</p></div>
 </section>
 <section id="skills">
