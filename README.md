@@ -74,3 +74,17 @@ SECURITY.md                  safe publication rules
 - Release availability checks need an internet connection, and are subject to GitHub API rate limiting. If they fail, the site shows no APK link.
 
 © 2026 Veer Creation
+
+## ARINA App Screenshots
+
+Original app captures supplied by VEER CREATION. Select any image to view it at its original resolution (691 × 1536). Status indicators reflect the moment of capture.
+
+<a href="assets/arina/server-dashboard.jpg"><img src="assets/arina/server-dashboard.jpg" alt="Server Dashboard" width="230"></a>
+<a href="assets/arina/server-sections.jpg"><img src="assets/arina/server-sections.jpg" alt="29 Server Control Sections" width="230"></a>
+<a href="assets/arina/ai-control-panel.jpg"><img src="assets/arina/ai-control-panel.jpg" alt="AI Control Panel" width="230"></a>
+<a href="assets/arina/ai-control-room.jpg"><img src="assets/arina/ai-control-room.jpg" alt="AI Control Room" width="230"></a>
+<a href="assets/arina/voice-audio.jpg"><img src="assets/arina/voice-audio.jpg" alt="Voice &amp; Audio Control" width="230"></a>
+<a href="assets/arina/web-intelligence.jpg"><img src="assets/arina/web-intelligence.jpg" alt="Web Intelligence" width="230"></a>
+<a href="assets/arina/brain-settings.jpg"><img src="assets/arina/brain-settings.jpg" alt="Brain Settings" width="230"></a>
+
+[Official APK release](https://github.com/magic616star666-bot/Veer-creation-/releases/tag/v1.0.0)
